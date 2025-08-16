@@ -18,9 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from server.apps.management.views import hello
+from server.apps.management.views import HiView, hello
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/practice/hello", hello),
+    path("api/v1/practice/hi", HiView.as_view()),
 ]
