@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     # Local APPS
     "server.apps.management",
+    "server.apps.playground",
 ]
 
 MIDDLEWARE = [
