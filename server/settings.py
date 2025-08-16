@@ -99,6 +99,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "management.User"  # APP 的名稱 . Model 的名稱
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
