@@ -16,12 +16,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-
-from server.apps.management.views import HiView, hello
+from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/practice/hello", hello),
-    path("api/v1/practice/hi", HiView.as_view()),
+    path("api/v1/playground/", include("server.apps.playground.urls")),
 ]
