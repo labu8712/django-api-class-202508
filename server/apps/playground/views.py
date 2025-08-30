@@ -37,6 +37,16 @@ class ItemListView(APIView):
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        serializer = ItemSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=400)
+
+        Item.objects.create(**serializer.validated_data)
+
+        return Response({"status": "ok"}, status=201)
+
 
 # GET /xxxxxx/items/<id> => 得到資料庫中指定的 Items
 

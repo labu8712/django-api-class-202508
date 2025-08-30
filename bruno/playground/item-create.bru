@@ -1,0 +1,23 @@
+meta {
+  name: item-create
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://127.0.0.1:8000/api/v1/playground/items
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Hello 004",
+    "description": "Hello 001 Hello 001 Hello 001",
+    "is_active": true
+  }
+}
+
+settings {
+  encodeUrl: true
+}
