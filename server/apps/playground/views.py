@@ -1,5 +1,7 @@
 from django.http import Http404
 from rest_framework.decorators import api_view
+from rest_framework.generics import GenericAPIView, ListCreateAPIView
+from rest_framework.mixins import CreateModelMixin, ListModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -31,21 +33,9 @@ class HiView(APIView):
 # GET /xxxxxx/items => 得到資料庫中所有的 Items
 
 
-class ItemListView(APIView):
-    def get(self, request):
-        items = Item.objects.all()
-        serializer = ItemSerializer(items, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = ItemSerializer(data=request.data)
-
-        # if not serializer.is_valid():
-        #     return Response(serializer.errors, status=400)
-
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({"status": "ok"}, status=201)
+class ItemListView(ListCreateAPIView):
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
 
 
 # GET /xxxxxx/items/<id> => 得到資料庫中指定的 Items
