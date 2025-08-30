@@ -2,6 +2,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from server.apps.playground.models import Item
+from server.apps.playground.serializers import ItemSerializer
+
 
 @api_view(["GET", "POST"])
 def hello(request):
@@ -29,4 +32,6 @@ class HiView(APIView):
 
 class ItemListView(APIView):
     def get(self, request):
-        return Response({"message": "items"})
+        items = Item.objects.all()
+        serializer = ItemSerializer(items, many=True)
+        return Response(serializer.data)
