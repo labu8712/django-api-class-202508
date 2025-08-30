@@ -60,3 +60,12 @@ class ItemDetailView(APIView):
 
         serializer = ItemSerializer(item)
         return Response(serializer.data)
+
+    def delete(self, request, item_id):
+        try:
+            item = Item.objects.get(id=item_id)
+        except Item.DoesNotExist:
+            raise Http404
+
+        item.delete()
+        return Response(status=204)
