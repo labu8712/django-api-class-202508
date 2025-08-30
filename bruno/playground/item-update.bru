@@ -1,0 +1,23 @@
+meta {
+  name: item-update
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://127.0.0.1:8000/api/v1/playground/items/7
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Hello 001",
+    "description": "Hello World!!!",
+    "is_active": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}
