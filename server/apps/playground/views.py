@@ -1,3 +1,4 @@
+from django.http import Http404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -34,4 +35,18 @@ class ItemListView(APIView):
     def get(self, request):
         items = Item.objects.all()
         serializer = ItemSerializer(items, many=True)
+        return Response(serializer.data)
+
+
+# GET /xxxxxx/items/<id> => 得到資料庫中指定的 Items
+
+
+class ItemDetailView(APIView):
+    def get(self, request, item_id):
+        try:
+            item = Item.objects.get(id=item_id)
+        except Item.DoesNotExist:
+            raise Http404
+
+        serializer = ItemSerializer(item)
         return Response(serializer.data)
