@@ -22,3 +22,11 @@ class HiView(APIView):
 
     def post(self, request):
         return Response({"message": self._build_message("POST")})
+
+
+# GET /xxxxxx/items => 得到資料庫中所有的 Items
+
+
+class ItemListView(APIView):
+    def get(self, request):
+        return Response({"message": "items"})
