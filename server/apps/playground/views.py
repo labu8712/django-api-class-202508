@@ -1,5 +1,6 @@
 from django.http import Http404
 from rest_framework.decorators import api_view
+from rest_framework.filters import OrderingFilter
 from rest_framework.generics import (
     GenericAPIView,
     ListCreateAPIView,
@@ -89,3 +90,5 @@ class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功�
     queryset = Item.objects.order_by("id")
     pagination_class = PageNumberWithSizePagination
     page_size = 5
+    filter_backends = [OrderingFilter]
+    ordering_fields = ["name", "id"]

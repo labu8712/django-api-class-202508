@@ -5,14 +5,15 @@ meta {
 }
 
 get {
-  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?page=1&page_size=5000
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?ordering=-id
   body: none
   auth: inherit
 }
 
 params:query {
-  page: 1
-  page_size: 5000
+  ordering: -id
+  ~page: 1
+  ~page_size: 5000
 }
 
 settings {
