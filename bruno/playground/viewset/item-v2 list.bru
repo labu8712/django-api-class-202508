@@ -5,15 +5,17 @@ meta {
 }
 
 get {
-  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?ordering=name,-id&page_size=5000&search=001
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?page_size=5000&is_active=true
   body: none
   auth: inherit
 }
 
 params:query {
-  ordering: name,-id
   page_size: 5000
-  search: 001
+  is_active: true
+  ~name: ViewSet 001 updated
+  ~ordering: name,-id
+  ~search: 001
   ~page: 1
 }
 
