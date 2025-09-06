@@ -12,6 +12,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,  # 負責單一物件存取 (GET)
     UpdateModelMixin,  # 負責更新 (PUT, PATCH)
 )
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -85,3 +86,4 @@ class ItemDetailView(RetrieveUpdateDestroyAPIView):
 class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功能
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
+    pagination_class = PageNumberPagination
