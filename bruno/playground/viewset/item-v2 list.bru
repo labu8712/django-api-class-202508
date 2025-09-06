@@ -5,15 +5,15 @@ meta {
 }
 
 get {
-  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?page_size=5000&id__gte=30&id__lte=32
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?page_size=5000
   body: none
   auth: inherit
 }
 
 params:query {
   page_size: 5000
-  id__gte: 30
-  id__lte: 32
+  ~id__gte: 30
+  ~id__lte: 32
   ~name__contains: 001
   ~is_active: false
   ~name: ViewSet 001 updated
