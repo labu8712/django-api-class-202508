@@ -1,0 +1,22 @@
+meta {
+  name: item-comments create
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/item-comments
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "content": "Good",
+    "item": 32
+  }
+}
+
+settings {
+  encodeUrl: true
+}

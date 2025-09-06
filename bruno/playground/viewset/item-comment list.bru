@@ -1,0 +1,26 @@
+meta {
+  name: item-comment list
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/item-comments
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~id__gte: 30
+  ~id__lte: 32
+  ~name__contains: 001
+  ~is_active: false
+  ~name: ViewSet 001 updated
+  ~ordering: name,-id
+  ~search: 001
+  ~page: 1
+}
+
+settings {
+  encodeUrl: true
+}

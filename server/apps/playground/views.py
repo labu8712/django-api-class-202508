@@ -19,8 +19,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from server.apps.playground.models import Item
-from server.apps.playground.serializers import ItemSerializer, ItemWithCommentSerializer
+from server.apps.playground.models import Item, ItemComment
+from server.apps.playground.serializers import (
+    ItemCommentSerializer,
+    ItemSerializer,
+    ItemWithCommentSerializer,
+)
 from server.utils.pagination import PageNumberWithSizePagination
 
 
@@ -117,3 +121,8 @@ class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功�
     #         return ItemWithCommentSerializer
 
     #     return super().get_serializer_class()
+
+
+class ItemCommentViewSet(ModelViewSet):
+    queryset = ItemComment.objects.all()
+    serializer_class = ItemCommentSerializer
