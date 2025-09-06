@@ -41,7 +41,9 @@ class ItemListView(ListCreateAPIView):
 # GET /xxxxxx/items/<id> => 得到資料庫中指定的 Items
 
 
-class ItemDetailView(APIView):
+class ItemDetailView(GenericAPIView):
+    serializer_class = ItemSerializer
+
     def get_item(self, item_id):
         try:
             return Item.objects.get(id=item_id)
@@ -50,7 +52,7 @@ class ItemDetailView(APIView):
 
     def get(self, request, item_id):
         item = self.get_item(item_id)
-        serializer = ItemSerializer(item)
+        serializer = self.get_serializer(item)
         return Response(serializer.data)
 
     def delete(self, request, item_id):
@@ -61,7 +63,7 @@ class ItemDetailView(APIView):
     def put(self, request, item_id):
         item = self.get_item(item_id)
 
-        serializer = ItemSerializer(item, data=request.data)
+        serializer = self.get_serializer(item, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
@@ -70,7 +72,7 @@ class ItemDetailView(APIView):
     def patch(self, request, item_id):
         item = self.get_item(item_id)
 
-        serializer = ItemSerializer(item, data=request.data, partial=True)
+        serializer = self.get_serializer(item, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
