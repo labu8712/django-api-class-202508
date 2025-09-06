@@ -87,8 +87,8 @@ class ItemDetailView(RetrieveUpdateDestroyAPIView):
 
 
 class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功能
-    serializer_class = ItemSerializer
-    queryset = Item.objects.all()
+    serializer_class = ItemWithCommentSerializer
+    queryset = Item.objects.prefetch_related("comments")
     pagination_class = PageNumberWithSizePagination
     page_size = 5
     filter_backends = [  # 允許被使用的 filter 種類
@@ -112,8 +112,8 @@ class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功�
         ],
     }
 
-    def get_serializer_class(self):
-        if self.action == "retrieve":
-            return ItemWithCommentSerializer
+    # def get_serializer_class(self):
+    #     if self.action == "retrieve":
+    #         return ItemWithCommentSerializer
 
-        return super().get_serializer_class()
+    #     return super().get_serializer_class()
