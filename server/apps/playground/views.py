@@ -82,6 +82,6 @@ class ItemDetailView(RetrieveUpdateDestroyAPIView):
 ## ========== ViewSet ==========
 
 
-class ItemViewSet(ModelViewSet):
+class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功能
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
