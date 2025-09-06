@@ -43,25 +43,21 @@ class ItemListView(ListCreateAPIView):
 
 class ItemDetailView(GenericAPIView):
     serializer_class = ItemSerializer
-
-    def get_item(self, item_id):
-        try:
-            return Item.objects.get(id=item_id)
-        except Item.DoesNotExist:
-            raise Http404
+    queryset = Item.objects.all()
+    lookup_url_kwarg = "item_id"
 
     def get(self, request, item_id):
-        item = self.get_item(item_id)
+        item = self.get_object()
         serializer = self.get_serializer(item)
         return Response(serializer.data)
 
     def delete(self, request, item_id):
-        item = self.get_item(item_id)
+        item = self.get_object()
         item.delete()
         return Response(status=204)
 
     def put(self, request, item_id):
-        item = self.get_item(item_id)
+        item = self.get_object()
 
         serializer = self.get_serializer(item, data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -70,7 +66,7 @@ class ItemDetailView(GenericAPIView):
         return Response(serializer.data)
 
     def patch(self, request, item_id):
-        item = self.get_item(item_id)
+        item = self.get_object()
 
         serializer = self.get_serializer(item, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
