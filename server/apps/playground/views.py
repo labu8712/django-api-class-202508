@@ -88,3 +88,4 @@ class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功�
     serializer_class = ItemSerializer
     queryset = Item.objects.order_by("id")
     pagination_class = PageNumberWithSizePagination
+    page_size = 5
