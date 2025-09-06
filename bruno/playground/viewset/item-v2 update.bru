@@ -1,0 +1,23 @@
+meta {
+  name: item-v2 update
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2/33
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "ViewSet 001 updated",
+    "description": "Create From view set.",
+    "is_active": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -14,6 +14,7 @@ from rest_framework.mixins import (
 )
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 from server.apps.playground.models import Item
 from server.apps.playground.serializers import ItemSerializer
@@ -76,3 +77,11 @@ class ItemDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
     lookup_url_kwarg = "item_id"
+
+
+## ========== ViewSet ==========
+
+
+class ItemViewSet(ModelViewSet):
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
