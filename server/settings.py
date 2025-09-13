@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # Local APPS
     "server.apps.management",
     "server.apps.playground",
+    "server.apps.todo",
 ]
 
 MIDDLEWARE = [
