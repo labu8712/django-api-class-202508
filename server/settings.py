@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "djoser",
     "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
     # Local APPS
     "server.apps.management",
     "server.apps.playground",
@@ -179,6 +180,7 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "UPDATE_LAST_LOGIN": True,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
 
 

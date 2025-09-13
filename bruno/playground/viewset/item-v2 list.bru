@@ -7,7 +7,7 @@ meta {
 get {
   url: http://127.0.0.1:8000/api/v1/playground/viewset/items-v2?page_size=10
   body: none
-  auth: inherit
+  auth: bearer
 }
 
 params:query {
@@ -22,8 +22,8 @@ params:query {
   ~page: 1
 }
 
-headers {
-  Authorization: Token d39368648066dbbdd9d8fbddbc9fb13e458ed2a8
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NzQyNjgyLCJpYXQiOjE3NTc3NDIzODIsImp0aSI6ImFjOGIyYjliNjQyZTQ0ZjM5ODgxNjEwZTdiY2JhZDg0IiwidXNlcl9pZCI6IjMifQ.uJ9WOpC6L9IYZj79XY5Hl6Kj8F7R5OQBlbdU0_8pGPk
 }
 
 settings {
