@@ -126,3 +126,16 @@ class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功�
 class ItemCommentViewSet(ModelViewSet):
     queryset = ItemComment.objects.select_related("item")
     serializer_class = ItemCommentSerializer
+
+    ordering_fields = ["id", "created_at", "updated_at"]
+    ordering = ["-created_at"]
+
+    search_fields = ["content", "item__name"]
+
+    filterset_fields = {
+        "id": ["gt", "gte", "lt", "lte"],
+        "created_at": ["gt", "gte", "lt", "lte"],
+        "updated_at": ["gt", "gte", "lt", "lte"],
+        "item__is_active": ["exact"],
+        "item__name": ["exact", "contains"],
+    }

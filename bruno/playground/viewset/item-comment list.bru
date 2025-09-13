@@ -5,19 +5,16 @@ meta {
 }
 
 get {
-  url: http://127.0.0.1:8000/api/v1/playground/viewset/item-comments
+  url: http://127.0.0.1:8000/api/v1/playground/viewset/item-comments?item__name__contains=H
   body: none
   auth: inherit
 }
 
 params:query {
-  ~id__gte: 30
-  ~id__lte: 32
-  ~name__contains: 001
-  ~is_active: false
-  ~name: ViewSet 001 updated
-  ~ordering: name,-id
-  ~search: 001
+  item__name__contains: H
+  ~item__is_active: true
+  ~id__gte: 3
+  ~search: ViewSet
   ~page: 1
 }
 
