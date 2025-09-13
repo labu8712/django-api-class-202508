@@ -124,5 +124,5 @@ class ItemViewSet(ModelViewSet):  # ItemListView + ItemDetailView 的所有功�
 
 
 class ItemCommentViewSet(ModelViewSet):
-    queryset = ItemComment.objects.all()
+    queryset = ItemComment.objects.select_related("item")
     serializer_class = ItemCommentSerializer
