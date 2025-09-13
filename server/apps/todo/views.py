@@ -1,6 +1,8 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from server.apps.todo.models import Project, Tag, Task
+from server.apps.todo.permissions import IsOwner
 from server.apps.todo.serializers import (
     ProjectSerializer,
     TagSerializer,
@@ -14,6 +16,8 @@ class ProjectViewSet(ModelViewSet):
 
     ordering_fields = ["id", "created_at", "updated_at"]
     ordering = ["-created_at"]
+
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class TagViewSet(ModelViewSet):
