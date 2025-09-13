@@ -1,9 +1,15 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import (
+    # CurrentUserDefault,
+    # HiddenField,
+    ModelSerializer,
+)
 
 from server.apps.todo.models import Project, Tag, Task
 
 
 class ProjectSerializer(ModelSerializer):
+    # owner = HiddenField(default=CurrentUserDefault())
+
     class Meta:
         model = Project
         fields = [
@@ -14,9 +20,12 @@ class ProjectSerializer(ModelSerializer):
             "created_at",
             "updated_at",
         ]
+        read_only_fields = ["owner"]
 
 
 class TagSerializer(ModelSerializer):
+    # owner = HiddenField(default=CurrentUserDefault())
+
     class Meta:
         model = Tag
         fields = [
@@ -26,9 +35,12 @@ class TagSerializer(ModelSerializer):
             "created_at",
             "updated_at",
         ]
+        read_only_fields = ["owner"]
 
 
 class TaskSerializer(ModelSerializer):
+    # owner = HiddenField(default=CurrentUserDefault())
+
     class Meta:
         model = Task
         fields = [
@@ -44,3 +56,4 @@ class TaskSerializer(ModelSerializer):
             "created_at",
             "updated_at",
         ]
+        read_only_fields = ["owner"]
