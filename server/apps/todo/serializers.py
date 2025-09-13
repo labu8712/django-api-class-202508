@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework.serializers import (
     CurrentUserDefault,
     HiddenField,
@@ -6,6 +7,14 @@ from rest_framework.serializers import (
 
 from server.apps.todo.models import Project, Tag, Task
 
+User = get_user_model()
+
+
+class OwnerSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "email"]
+
 
 class ProjectSerializer(ModelSerializer):
     owner_id = HiddenField(
@@ -13,6 +22,7 @@ class ProjectSerializer(ModelSerializer):
         source="owner",
         write_only=True,
     )
+    owner = OwnerSerializer(read_only=True)
 
     class Meta:
         model = Project
@@ -34,6 +44,7 @@ class TagSerializer(ModelSerializer):
         source="owner",
         write_only=True,
     )
+    owner = OwnerSerializer(read_only=True)
 
     class Meta:
         model = Tag
@@ -54,6 +65,7 @@ class TaskSerializer(ModelSerializer):
         source="owner",
         write_only=True,
     )
+    owner = OwnerSerializer(read_only=True)
 
     class Meta:
         model = Task
