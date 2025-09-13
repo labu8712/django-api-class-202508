@@ -132,7 +132,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# DRF setttings
+# DRF settings
 
 REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
