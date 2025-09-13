@@ -1,6 +1,6 @@
 from rest_framework.serializers import (
-    # CurrentUserDefault,
-    # HiddenField,
+    CurrentUserDefault,
+    HiddenField,
     ModelSerializer,
 )
 
@@ -8,7 +8,11 @@ from server.apps.todo.models import Project, Tag, Task
 
 
 class ProjectSerializer(ModelSerializer):
-    # owner = HiddenField(default=CurrentUserDefault())
+    owner_id = HiddenField(
+        default=CurrentUserDefault(),
+        source="owner",
+        write_only=True,
+    )
 
     class Meta:
         model = Project
@@ -16,6 +20,7 @@ class ProjectSerializer(ModelSerializer):
             "id",
             "name",
             "owner",
+            "owner_id",
             "is_public",
             "created_at",
             "updated_at",
@@ -24,7 +29,11 @@ class ProjectSerializer(ModelSerializer):
 
 
 class TagSerializer(ModelSerializer):
-    # owner = HiddenField(default=CurrentUserDefault())
+    owner_id = HiddenField(
+        default=CurrentUserDefault(),
+        source="owner",
+        write_only=True,
+    )
 
     class Meta:
         model = Tag
@@ -32,6 +41,7 @@ class TagSerializer(ModelSerializer):
             "id",
             "name",
             "owner",
+            "owner_id",
             "created_at",
             "updated_at",
         ]
@@ -39,7 +49,11 @@ class TagSerializer(ModelSerializer):
 
 
 class TaskSerializer(ModelSerializer):
-    # owner = HiddenField(default=CurrentUserDefault())
+    owner_id = HiddenField(
+        default=CurrentUserDefault(),
+        source="owner",
+        write_only=True,
+    )
 
     class Meta:
         model = Task
@@ -51,6 +65,7 @@ class TaskSerializer(ModelSerializer):
             "is_completed",
             "due_date",
             "owner",
+            "owner_id",
             "project",
             "tags",
             "created_at",
