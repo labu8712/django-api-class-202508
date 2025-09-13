@@ -9,6 +9,7 @@ dependencies = [
     "django-extensions>=4.1",
     "django-filter>=25.1",
     "djangorestframework>=3.16.1",
+    "djoser>=2.3.3",
     "drf-spectacular>=0.28.0",
 ]
 

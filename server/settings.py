@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
+    "djoser",
     # Local APPS
     "server.apps.management",
     "server.apps.playground",
@@ -159,3 +160,21 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,  # 文件是否顯示 Schema
 }
+
+DJOSER = {
+    "EMAIL_FRONTEND_PROTOCOL": "http",
+    "EMAIL_FRONTEND_DOMAIN": "localhost:3000",
+    "EMAIL_FRONTEND_SITE_NAME": "My Website",
+    "SEND_ACTIVATION_EMAIL": True,
+    "ACTIVATION_URL": "users/activate/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "users/password/reset/confirm/{uid}/{token}",
+    "USERNAME_RESET_CONFIRM_URL": "users/username/reset/confirm/{uid}/{token}",
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+}
+
+
+# Email settings
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+
+EMAIL_FILE_PATH = BASE_DIR / "emails"
