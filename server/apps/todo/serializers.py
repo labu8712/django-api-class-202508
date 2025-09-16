@@ -3,6 +3,7 @@ from rest_framework.serializers import (
     CurrentUserDefault,
     HiddenField,
     ModelSerializer,
+    PrimaryKeyRelatedField,
 )
 
 from server.apps.todo.models import Project, Tag, Task
@@ -67,6 +68,21 @@ class TaskSerializer(ModelSerializer):
     )
     owner = OwnerSerializer(read_only=True)
 
+    project_id = PrimaryKeyRelatedField(
+        source="project",
+        queryset=Project.objects.all(),
+        write_only=True,
+    )
+    project = ProjectSerializer(read_only=True)
+
+    tag_ids = PrimaryKeyRelatedField(
+        source="tags",
+        queryset=Tag.objects.all(),
+        write_only=True,
+        many=True,
+    )
+    tags = TagSerializer(read_only=True, many=True)
+
     class Meta:
         model = Task
         fields = [
@@ -79,7 +95,9 @@ class TaskSerializer(ModelSerializer):
             "owner",
             "owner_id",
             "project",
+            "project_id",
             "tags",
+            "tag_ids",
             "created_at",
             "updated_at",
         ]
