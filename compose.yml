@@ -1,0 +1,17 @@
+name: todo
+
+services:
+  app:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - app_data:/app/data
+    environment:
+      - DJANGO_SETTINGS_MODULE=docker.settings
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_PASSWORD=admin
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+
+volumes:
+  app_data:
